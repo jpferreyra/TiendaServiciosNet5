@@ -6,8 +6,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System;
 using System.Reflection;
 using TiendaServicios.Api.Carrito.Persistence;
+using TiendaServicios.Api.Carrito.RemoteInterface;
+using TiendaServicios.Api.Carrito.RemoteService;
 
 namespace TiendaServicios.Api.Carrito
 {
@@ -23,6 +26,7 @@ namespace TiendaServicios.Api.Carrito
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<ILibroService, LibroService>();
 
             services.AddControllers();
 
@@ -31,7 +35,12 @@ namespace TiendaServicios.Api.Carrito
                 options.UseMySQL(Configuration.GetConnectionString("ConexionDatabase"));
             });
             
+
             services.AddMediatR(Assembly.GetExecutingAssembly());
+
+            services.AddHttpClient("Libros", config => {
+                config.BaseAddress = new Uri(Configuration["Services:Libros"]);
+            });
 
             services.AddSwaggerGen(c =>
             {
