@@ -55,8 +55,6 @@ namespace TiendaServicios.Api.Libro.XUnitTestProject
         [Fact]
         public async  void GetLibros()
         {
-
-
             //1. Emular Context (Moq) //new Mock<LibroContext>();
             var mockContext = CreateContext(); 
 
