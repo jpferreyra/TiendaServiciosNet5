@@ -114,7 +114,6 @@ namespace TiendaServicios.Api.Libro.XUnitTestProject
             var options = new DbContextOptionsBuilder<LibroContext>()
                 .UseInMemoryDatabase(databaseName: "bddlibro")
                 .Options;
-
             
             //context
             var context = new LibroContext(options);
@@ -129,7 +128,7 @@ namespace TiendaServicios.Api.Libro.XUnitTestProject
 
             var libro = await handler.Handle(request, new System.Threading.CancellationToken());
 
-            Assert.True(libro != null) ;
+            Assert.True(libro != null);
 
         }
     }
