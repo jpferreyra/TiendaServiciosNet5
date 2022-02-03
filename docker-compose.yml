@@ -12,8 +12,15 @@ services:
       context: .
       dockerfile: TiendaServicios.Api.Libro/Dockerfile
 
+  tiendaservicios.api.carrito:
+    image: ${DOCKER_REGISTRY-}tiendaserviciosapicarrito
+    build:
+      context: .
+      dockerfile: TiendaServicios.Api.Carrito/Dockerfile
+
 networks:
   default:
     external:
       name: microservicenet
+
 

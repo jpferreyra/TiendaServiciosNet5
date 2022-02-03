@@ -4,10 +4,8 @@ services:
   tiendaservicios.api.autor:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=https://+:443;http://+:80
     ports:
       - "6104:80"
-      - "443"
     volumes:
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
   tiendaservicios.api.libro:
@@ -16,3 +14,12 @@ services:
     ports:
       - "6105:80"
 
+
+  tiendaservicios.api.carrito:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - Services__Libros=http://tiendaservicios.api.libro
+    ports:
+      - "6106:80"
+
+ 
