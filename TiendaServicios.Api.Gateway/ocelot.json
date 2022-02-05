@@ -5,12 +5,13 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "tiendaservicios.api.libro",
+          "Host": "tiendaservicios.api.libro", //docker container name docker-comp....override.yml
           "Port": "80"
         }
       ],
       "UpstreamPathTemplate": "/libro",
-      "UpstreamMethod": [ "GET", "POST", "PUT" ]
+      "UpstreamMethod": [ "GET", "POST", "PUT" ],
+      "Key": "libroTotal"
     },
     {
       "DownstreamPathTemplate": "/api/libro/{id}",
@@ -22,7 +23,66 @@
         }
       ],
       "UpstreamPathTemplate": "/libro/{id}",
+      "UpstreamMethod": [ "GET", "DELETE" ],
+      "delegatingHandlers": ["LibroHandler"] 
+    },
+    {
+      "DownstreamPathTemplate": "/api/autor",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "tiendaservicios.api.autor",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/autor",
+      "UpstreamMethod": [ "GET", "POST", "PUT" ],
+      "Key": "autorTotal"
+    },
+    {
+      "DownstreamPathTemplate": "/api/autor/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "tiendaservicios.api.autor",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/autor/{id}",
       "UpstreamMethod": [ "GET", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/carritocompras",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "tiendaservicios.api.carrito",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/carritocompras",
+      "UpstreamMethod": [ "GET", "POST", "PUT" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/carritocompras/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "tiendaservicios.api.carrito",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/carritocompras/{id}",
+      "UpstreamMethod": [ "GET", "DELETE" ]
+    }
+  ], //fin rutas
+  "aggregates": [
+    {
+      "RouteKeys": [
+        "libroTotal",
+        "autorTotal"
+      ],
+      "UpstreamPathTemplate": "/libroAutor"
     }
   ]
 }
