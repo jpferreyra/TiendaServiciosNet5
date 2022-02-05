@@ -1,0 +1,28 @@
+﻿{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/libro",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "tiendaservicios.api.libro",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/libro",
+      "UpstreamMethod": [ "GET", "POST", "PUT" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/libro/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "tiendaservicios.api.libro",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/libro/{id}",
+      "UpstreamMethod": [ "GET", "DELETE" ]
+    }
+  ]
+}
